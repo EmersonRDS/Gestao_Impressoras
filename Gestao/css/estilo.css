@@ -1,0 +1,385 @@
+@charset 'utf-8';
+* {
+    margin: 0%;
+    padding: 0%;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/*  -------------------------------
+            estrutura geral 
+    ------------------------------- 
+*/
+
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.topo {
+    height: 15%;
+    width: 100%;
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+.menu {
+    height: 20%;
+    width: 40%;
+    border-radius: 9px 0px 0px 0px;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+}
+
+.menu ul {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu ul a {
+    padding: 1%;
+}
+
+.rodape {
+    height: 5%;
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rodape p {
+    font-weight: bold;
+}
+
+.indexMain {
+    height: 80%;
+    width: 100%;
+    background-color: black;
+}
+
+
+/*  -------------------------------
+        cadastro impressora 
+    ------------------------------- 
+*/
+
+#cadImpressoraMain {
+    height: 80%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#formCadImpressora {
+    width: 80%;
+    height: 90%;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#formCadImpressora input {
+    width: 25%;
+    height: 5%;
+    text-align: center;
+}
+
+#formCadImpressora button {
+    padding: 9px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+}
+
+.verificarMain {
+    height: 80%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*
+    -------------------------------
+        verificar impressora 
+    -------------------------------
+*/
+
+#lista {
+    height: 90%;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: stretch;
+}
+
+.formFiltro {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formFiltro h2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+#divButton {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+}
+
+#divbutton button {
+    border: none;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#buttonLoja {
+    background-color: #00D287;
+}
+
+#buttonSetor {
+    background-color: #36A8E0;
+}
+
+#buttonModelo {
+    background-color: #F5CE2D;
+}
+
+#pesquisarFiltro {
+    width: 100%;
+    height: 40%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#pesquisarLabel {
+    width: 70%;
+    text-align: center;
+}
+
+#pesquisarInput {
+    margin-top: 2%;
+    height: 70%;
+    width: 80%;
+    text-align: center;
+}
+
+.buttonPesquisar {
+    background-color: #00D287;
+    border: none;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 8%;
+}
+
+.text-center {
+    text-align: center;
+    background-color: rgba(60, 60, 60, 0.932);
+    color: white;
+}
+
+.text-center1 {
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.521);
+    color: white;
+}
+
+.table {
+    border-collapse: collapse;
+    background-color: #222;
+    width: 40%;
+    height: 90%;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+thead,
+tbody {
+    display: block;
+}
+
+tbody {
+    overflow-y: scroll;
+    height: 85%;
+}
+
+.table caption {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    height: 8%;
+    padding: 5px 0;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.table th {
+    padding: 5px;
+    width: 8.5%;
+    text-align: center;
+}
+
+.table td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 5%;
+    word-break: break-word;
+    color: #fff;
+}
+
+.table td a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+}
+
+.table thead {
+    background-color: #333;
+    color: #fff;
+    height: 10%;
+}
+
+::-webkit-scrollbar {
+    margin-left: 10px;
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: gainsboro;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/*
+    -------------------------------
+        verificar impressora 
+    -------------------------------
+*/
+
+.indexDados {
+    height: 80%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadLista {
+    height: 90%;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cadastradoDiv {
+    height: 90%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cadastradoDiv p {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
+/*  -------------------------------
+        Altera impressora 
+    ------------------------------- 
+*/
+
+.alteraMain {
+    height: 80%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#alteraImpressoraForm {
+    height: 80%;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#alteraImpressoraForm h1 {
+    width: 100%;
+    text-align: center;
+}
+
+#alteraImpressoraForm p {
+    width: 40%;
+    text-align: center;
+}
+
+#alteraImpressoraForm p input {
+    width: 80%;
+    height: 5%;
+    text-align: center;
+}
+
+#alteraImpressoraForm div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#alteraImpressoraForm div button {
+    padding: 9px;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+}
