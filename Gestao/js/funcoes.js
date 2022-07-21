@@ -33,7 +33,7 @@ function validarCadastroImpressora() {
         document.getElementById('result').innerHTML = '<p>Preencha os campos em vermelho!</p>';
         document.getElementById('result').style.color = 'red';
     } else {
-        document.getElementById('result').innerHTML = '<button type="submit">Cadastrar</button';
+        document.getElementById('result').innerHTML = '<button type="submit" name="cadImpressora" value="0">Cadastrar</button';
     }
 
 }

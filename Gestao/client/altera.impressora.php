@@ -1,8 +1,19 @@
 <?php
     include_once "../model/Impressora.class.php";
+    include_once "../controller/conecta.php";
     session_start();
+    $conexao = db_connect();
    
-    $i = $_GET["i"];
+    $i = $_GET["codImp"];
+
+    $consulta = $conexao->query("SELECT * FROM tb_impressora WHERE id = '$i'");
+
+    if(isset($_GET['btn_logout'])){
+        deslogar();
+    }
+
+    if(isset($_SESSION['usuario'])){
+
 ?>
 
 <html lang="pt-br">
@@ -17,6 +28,9 @@
 
 <body>
     <header class="topo">
+        <form action="#" method="GET">
+            <button type="submit" name="btn_logout" value="0">logout</button>
+        </form>
         <nav class="menu">
             <ul>
                 <a href="../">
@@ -29,35 +43,42 @@
         </nav>
     </header>
     <main class="alteraMain">
-        <form id="alteraImpressoraForm" action="../controller/altera.cadastro.php" method="POST" >
-            <input type="hidden" value="<?php echo $i;?>" name="indice">
-            <h1>Cadastro de impressoras</h1>
-
-            <p>Digite o MODELO da impressora:<br>
-            <input readonly name="newModelo" value="<?php echo $_SESSION['impressoras'][$i]->getModelo();?>"></p> 
-
-            <p>Digite o Serial da impressora:<br>
-            <input readonly name="newSerial" value="<?php echo $_SESSION['impressoras'][$i]->getSerial();?>"></p> 
-
-            <p>Qual o IP da impressora?<br>
-            <input name="newIp" value="<?php echo $_SESSION['impressoras'][$i]->getIp();?>"></p> 
-
-            <p>Digite o SETOR que a impressora pertence:</br>
-            <input name="newSetor" value="<?php echo $_SESSION['impressoras'][$i]->getSetor();?>"></p>
-
-            <p>Digite a LOJA que está a impressora:</br>
-            <input name="newLoja" value="<?php echo $_SESSION['impressoras'][$i]->getLoja();?>"></p>
-
-            <p>Data do último concerto:</br>
-            <input name="newConcerto" value="<?php echo $_SESSION['impressoras'][$i]->getConcerto();?>"></p>
-
-            <p>Data da última troca de toner:</br>
-            <input name="newToner" value="<?php echo $_SESSION['impressoras'][$i]->getToner();?>"></p>
-
-            <p>Quem fez a solicitação:</br>
-            <input name="newSolicitacao" value="<?php echo $_SESSION['impressoras'][$i]->getSolicitacao();?>"></p>
-
-            <div><button>Cadastrar</button></div>
+        <form id="alteraImpressoraForm" action="../controller/registrar.php" method="POST" >
+            <?php
+                while ($row = $consulta->fetch()) {
+                    echo "
+                    <input type='hidden' value=' $i' name='indice'>
+                    <h1>Cadastro de impressoras</h1>
+        
+                    <p>Digite o MODELO da impressora:<br>
+                    <input readonly name='newModelo' value='".$row['modelo']."'></p>
+        
+                    <p>Digite o Serial da impressora:<br>
+                    <input readonly name='newSerial' value='".$row['serial']."'></p> 
+        
+                    <p>Qual o IP da impressora?<br>
+                    <input name='newIp' value='".$row['ip']."'></p> 
+        
+                    <p>Digite o SETOR que a impressora pertence:</br>
+                    <input name='newSetor' value='".$row['setor']."'></p>
+        
+                    <p>Digite a LOJA que está a impressora:</br>
+                    <input name='newLoja' value='".$row['loja']."'></p>
+        
+                    <p>Data do último concerto:</br>
+                    <input name='newConcerto' type='date' value='".$row['D_concerto']."'></p>
+        
+                    <p>Data da última troca de toner:</br>
+                    <input name='newToner' type='date' value='".$row['T_toner']."'></p>
+        
+                    <p>Quem fez a solicitação:</br>
+                    <input name='newSolicitacao' value='".$row['U_solicitacao']."'></p>
+        
+                    <div><button name='editaImpressora' value='0'>Cadastrar</button></div>";
+                    
+                }
+            
+            ?>
             
         </form>
 
@@ -68,3 +89,9 @@
 </body>
 <script type="text/javascript" src="../js/funcoes.js"></script>
 </html>
+<?php
+    }else{
+        echo "<h1>Usuário desconectado!</h1>";
+        header("Refresh:2; ../index.php");
+    }
+?>

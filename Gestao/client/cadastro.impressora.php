@@ -1,3 +1,20 @@
+<?php
+include_once "../controller/conecta.php";
+session_start();
+
+
+
+if(isset($_GET['btn_logout'])){
+    deslogar();
+}
+
+if(isset($_SESSION['usuario'])){
+?>
+
+
+
+
+
 <html lang="pt-br">
 
 <head>
@@ -10,6 +27,9 @@
 
 <body>
     <header class="topo">
+        <form action="#" method="GET">
+            <button type="submit" name="btn_logout" value="0">logout</button>
+        </form>
         <nav class="menu">
             <ul>
                 <a href="../index.php">
@@ -22,7 +42,7 @@
         </nav>
     </header>
     <main id="cadImpressoraMain">
-        <form id="formCadImpressora" action="../controller/dados.cadastro.impressora.php" method="POST" >
+        <form id="formCadImpressora" action="../controller/registrar.php" method="POST" >
             <h1>Cadastro de impressoras</h1>
 
             <p id="0">*Digite o MODELO da impressora:</p>
@@ -50,3 +70,10 @@
 </body>
 <script type="text/javascript" src="../js/funcoes.js"></script>
 </html>
+
+<?php
+  }else{
+    echo "<h1>Usuário desconectado!</h1>";
+    header("Refresh:2; ../index.php");
+  }
+?>

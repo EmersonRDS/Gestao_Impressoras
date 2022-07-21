@@ -1,8 +1,14 @@
 <?php
   include_once "../model/Impressora.class.php";
+  include_once "../controller/conecta.php";
   session_start();
+  $conexao = db_connect();
+  
+  if(isset($_GET['btn_logout'])){
+      deslogar();
+  }
 
-
+  if(isset($_SESSION['usuario'])){
 ?>
 <html lang="pt-br">
 
@@ -16,6 +22,9 @@
 
 <body>
   <header class="topo">
+    <form action="#" method="GET">
+      <button type="submit" name="btn_logout" value="0">logout</button>
+    </form>
     <nav class="menu">
       <ul>
         <a href="../">
@@ -41,42 +50,67 @@
         <div id="PesquisarFiltro">
         </div>
       </form>
+      <form id="verificar_table" method="GET" action="altera.impressora.php">
+        <table class="table">
+          <caption><b>Listas de impressoras</b></caption>
+          <thead>
+            <tr>
+              <th>Indice</th>
+              <th>Modelo</th>
+              <th>Serial</th>
+              <th>Loja</th>
+              <th>Setor</th>
+            </tr>
+          </thead>
+          <tbody>
 
-      <table class="table">
-        <caption><b>Listas de impressoras</b></caption>
-        <thead>
-          <tr>
-            <th>Indice</th>
-            <th>Modelo</th>
-            <th>Serial</th>
-            <th>Loja</th>
-            <th>Setor</th>
-          </tr>
-        </thead>
-        <tbody>
+            <?php
 
-          <?php
-
-            if(isset($_SESSION['impressoras'])){
-              for($i=0; $i<count($_SESSION['impressoras']); $i++){
-                if($i % 2 == 0){
-                  echo "<tr>".
-                  "<td class='text-center1' id='indice'><a href='altera.impressora.php?i=$i'>".($i+1)."</a></td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getModelo()."</td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getSerial()."</td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getLoja()."</td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getSetor()."</td>".
-                  "</tr>";
-                }
-                else{
-                  echo "<tr>".
-                  "<td class='text-center' id=='indice'><a href='altera.impressora.php?i=$i'>".($i+1)."</a></td><td class='text-center'>".$_SESSION['impressoras'][$i]->getModelo()."</td><td class='text-center'>".$_SESSION['impressoras'][$i]->getSerial()."</td><td class='text-center'>".$_SESSION['impressoras'][$i]->getLoja()."</td><td class='text-center'>".$_SESSION['impressoras'][$i]->getSetor()."</td>".
-                  "</tr>";
-                }
+            $consulta = $conexao->query("SELECT * FROM tb_impressora");  
+                                                            
+            while ($row = $consulta->fetch()) {
+              if($row['id'] % 2 ==0){
+                echo "<tr>".
+                "<td class='text-center1' id='indice'><button name='codImp' type='submit' value='".$row['id']."'>".$row['id'].
+                "</button></td><td class='text-center1'>".$row['modelo'].
+                "</td><td class='text-center1'>".$row['serial'].
+                "</td><td class='text-center1'>".$row['loja'].
+                "</td><td class='text-center1'>".$row['setor']."</td>".
+                "</tr>";
+              }else{
+                echo "<tr>".
+                "<td class='text-center' id='indice'><button name='codImp' type='submit' value='".$row['id']."'>".$row['id'].
+                "</button></td><td class='text-center'>".$row['modelo'].
+                "</td><td class='text-center'>".$row['serial'].
+                "</td><td class='text-center'>".$row['loja'].
+                "</td><td class='text-center'>".$row['setor']."</td>".
+                "</tr>";
               }
+              
             }
 
-          ?>
 
-        </tbody>
-      </table>
 
+              /*if(isset($_SESSION['impressoras'])){
+                for($i=0; $i<count($_SESSION['impressoras']); $i++){
+                  if($i % 2 == 0){
+                    echo "<tr>".
+                    "<td class='text-center1' id='indice'><button name='codImp' type='submit' value='$i'>$i</button></td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getModelo()."</td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getSerial()."</td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getLoja()."</td><td class='text-center1'>".$_SESSION['impressoras'][$i]->getSetor()."</td>".
+                    "</tr>";
+                  }
+                  else{
+                    echo "<tr>".
+                    "<td class='text-center' id=='indice'><button name='codImp' type='submit' value='$i'>$i</button></td><td class='text-center'>".$_SESSION['impressoras'][$i]->getModelo()."</td><td class='text-center'>".$_SESSION['impressoras'][$i]->getSerial()."</td><td class='text-center'>".$_SESSION['impressoras'][$i]->getLoja()."</td><td class='text-center'>".$_SESSION['impressoras'][$i]->getSetor()."</td>".
+                    "</tr>";
+                  }
+                }
+              }*/
+
+            ?>
+
+          </tbody>
+        </table>
+      </form>
     </section>
 
   </main>
@@ -88,3 +122,10 @@
 </body>
 <script type="text/javascript" src="../js/funcoes.js"></script>
 </html>
+
+<?php
+  }else{
+    echo "<h1>Usuário desconectado!</h1>";
+    header("Refresh:2; ../index.php");
+  }
+?>

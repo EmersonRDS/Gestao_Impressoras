@@ -19,10 +19,6 @@
             $this->setor = $setor;
             $this->loja = $loja;
 
-            $this->toner = "N/A";
-            $this->concerto = "N/A";
-            $this->solicitacao = "N/A";
-
         }
 
         public function setModelo($m){

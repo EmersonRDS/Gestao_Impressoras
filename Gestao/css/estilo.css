@@ -52,7 +52,7 @@ body {
 .rodape {
     height: 5%;
     width: 100%;
-    background-color: blue;
+    background-color: rgb(170, 170, 248);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,6 +66,45 @@ body {
     height: 80%;
     width: 100%;
     background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*  -------------------------------
+        tela de login
+    ------------------------------- 
+*/
+
+#formLogin {
+    width: 90%;
+    height: 90%;
+    background-color: rgb(90, 87, 87);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#formLogin div {
+    width: 40%;
+    height: 55%;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#formLogin div input {
+    width: 80%;
+    height: 10%;
+    text-align: center;
+    border-radius: 5px;
 }
 
 
@@ -211,16 +250,40 @@ body {
     color: white;
 }
 
+.text-center button {
+    border: none;
+    padding: 2px 10px 2px 10px;
+    align-content: center;
+    background-color: Transparent;
+    color: white;
+}
+
 .text-center1 {
     text-align: center;
     background-color: rgba(51, 51, 51, 0.521);
     color: white;
 }
 
+.text-center1 button {
+    border: none;
+    padding: 2px 10px 2px 10px;
+    align-content: center;
+    background-color: Transparent;
+    color: white;
+}
+
+#verificar_table {
+    width: 50%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .table {
     border-collapse: collapse;
     background-color: #222;
-    width: 40%;
+    width: 90%;
     height: 90%;
     border-radius: 10px;
     margin-left: 10px;
@@ -247,7 +310,7 @@ tbody {
 
 .table th {
     padding: 5px;
-    width: 8.5%;
+    width: 7%;
     text-align: center;
 }
 
